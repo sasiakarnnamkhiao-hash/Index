@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ta Ray - ร้านรับฝากขายและหาไอดีครบวงจร 🎮</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ตั้งค่าพื้นฐานและแก้ตัวอักษรห่าง */
+* { margin: 0; padding: 0; box-sizing: border-box; letter-spacing: 0px !important; }
+:root {
+  --bg-deep: #02020B;      /* Chinese Black */
+  --primary: #0D1546;     /* Metallic Blue */
+  --accent: #2D4882;      /* Blue Yonder */
+  --highlight: #779ABF;   /* Beau Blue */
+  --pure-blue: #2b59ff;
+  --glow: rgba(43, 89, 255, 0.4);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Kanit', sans-serif;
+  background: var(--bg-deep); color: #fff;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Background Effect (วิ้งๆ) */
+#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.pt { position: absolute; animation: ptUp linear infinite; opacity: 0.5; color: var(--highlight); }
+@keyframes ptUp {
+  0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+}
+
+/* --- Header Section --- */
+.hero {
+  padding: 50px 25px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--bg-deep) 100%);
+  position: relative; overflow: hidden;
+}
+.hero-tag {
+  display: inline-block; background: rgba(255,255,255,0.08);
+  padding: 6px 18px; border-radius: 50px; font-size: 12px;
+  margin-bottom: 15px; border: 1px solid var(--accent);
+  color: var(--highlight); font-weight: 500;
+}
+.hero-title { font-size: 52px; font-weight: 800; line-height: 1; margin-bottom: 12px; }
+.hero-sub { color: var(--highlight); font-size: 15px; max-width: 70%; }
+.hero-img { 
+  position: absolute; right: 20px; bottom: 40px;
+  width: 110px; height: 110px; border-radius: 22px;
+  border: 2px solid var(--highlight); object-fit: cover;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+/* --- Layout Content --- */
+.content { max-width: 650px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+
+.sh { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; margin-top: 20px; }
+.sh h2 { font-size: 20px; font-weight: 600; white-space: nowrap; }
+.sh-line { flex: 1; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
+
+.box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px; padding: 25px; margin-bottom: 25px;
+  backdrop-filter: blur(5px);
+}
+
+/* --- Service & Rates --- */
+.service-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.service-tag { 
+  background: var(--primary); padding: 8px 15px; border-radius: 12px; 
+  font-size: 14px; border: 1px solid var(--accent); 
+}
+
+.rate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.rate-col { display: flex; flex-direction: column; gap: 8px; }
+.rate-row { 
+  display: flex; justify-content: space-between; font-size: 14px; 
+  padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.rate-val { color: var(--highlight); font-weight: 700; }
+
+/* --- Steps (ลูกเล่นเลข 1-4 ตามภาพ) --- */
+.step-item { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
+.step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pure-blue), var(--highlight));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px; flex-shrink: 0;
+  box-shadow: 0 0 15px var(--glow);
+}
+.step-text { font-size: 15px; color: rgba(255,255,255,0.9); }
+.step-text b { color: var(--highlight); } /* ไฮไลท์คำสำคัญ */
+
+/* --- Buttons --- */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 18px; border-radius: 20px;
+  text-decoration: none; font-weight: 700; font-size: 16px; transition: 0.3s;
+}
+.btn-queue { 
+  background: linear-gradient(90deg, var(--pure-blue), var(--accent));
+  color: white; margin-top: 15px; box-shadow: 0 5px 20px var(--glow);
+}
+.btn-fb { background: #1877f2; color: white; margin-top: 10px; }
+.btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+
+/* FAQ & Prep */
+.faq-q { font-weight: 600; color: #fff; margin-bottom: 5px; display: block; }
+.faq-a { color: var(--highlight); font-size: 14px; margin-bottom: 15px; }
+
+.prep-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; color: var(--highlight); }
+
+.warn-box {
+  border-left: 5px solid #ffcc00; background: rgba(255,204,0,0.07);
+  padding: 20px; border-radius: 0 20px 20px 0; font-size: 14px; line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div id="pts"></div>
+
+<div class="hero">
+  <div class="hero-tag">✨ บริการรับฝากขาย / หาไอดีครบวงจร</div>
+  <h1 class="hero-title">Ta Ray</h1>
+  <p class="hero-sub">ร้าน Ta Ray รับฝากขายและบริการป้ายเรทต่างๆ ยินดีดูแลทุกการซื้อขายครับ</p>
+  <img src="IMG_7201.jpeg" class="hero-img">
+</div>
+
+<div class="content">
+  <div class="sh"><h2>🎨 งานที่รับทำ</h2><div class="sh-line"></div></div>
+  <div class="box service-list">
+    <div class="service-tag">📱 รับฝากขาย</div>
+    <div class="service-tag">🎮 รับหาไอดี</div>
+    <div class="service-tag">🪧 รับทำป้ายเรท</div>
+    <div class="service-tag">💳 ป้ายคิวอาร์ / ปกเครดิต</div>
+  </div>
+
+  <div id="rates">
+    <div class="sh"><h2>💰 เรทราคาฝากขาย</h2><div class="sh-line"></div></div>
+    <div class="box">
+      <div class="rate-grid">
+        <div class="rate-col">
+          <div class="rate-row"><span>500 – 900</span><span class="rate-val">15 B</span></div>
+          <div class="rate-row"><span>1000 – 1499</span><span class="rate-val">25 B</span></div>
+          <div class="rate-row"><span>1500 – 1999</span><span class="rate-val">30 B</span></div>
+          <div class="rate-row"><span>2000 – 2499</span><span class="rate-val">45 B</span></div>
+          <div class="rate-row"><span>2500 – 4499</span><span class="rate-val">57 B</span></div>
+        </div>
+        <div class="rate-col">
+          <div class="rate-row"><span>8501 – 9999</span><span class="rate-val">145 B</span></div>
+          <div class="rate-row"><span>10,000+</span><span class="rate-val">1.9%</span></div>
+          <div class="rate-row"><span>14,000+</span><span class="rate-val">2.5%</span></div>
+          <div class="rate-row"><span>30,000+</span><span class="rate-val">4.5%</span></div>
+          <div class="rate-row"><span>100,000+</span><span class="rate-val">5.5%</span></div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:12px; color:#ff8080; margin-top:15px;">* หมายเหตุ: คนที่เพิ่งใช้บริการจ่ายก่อนทุกกรณี</p>
+      <img src="att.qinRJRdZk5uRPfzTV5LLWtC3_BvNc47dYtI2am68Mtc.jpeg" style="width:100%; border-radius:18px; margin-top:15px; border:1px solid var(--accent);">
+    </div>
+
+    <div class="sh"><h2>🔍 เรทราคาหาไอดี</h2><div class="sh-line"></div></div>
+    <div class="box">
+      <div class="rate-grid" style="grid-template-columns: 1fr;">
+        <div class="rate-row"><span>1 – 900</span><span class="rate-val">40 B</span></div>
+        <div class="rate-row"><span>901 – 1900</span><span class="rate-val">57 B</span></div>
+        <div class="rate-row"><span>10,000+++</span><span class="rate-val">170 B</span></div>
+        <div class="rate-row"><span>100,000+++</span><span class="rate-val">300 B</span></div>
+      </div>
+      <img src="IMG_0154.jpeg" style="width:100%; border-radius:18px; margin-top:15px; border:1px solid var(--accent);">
+    </div>
+  </div>
+
+  <div id="how-to">
+    <div class="sh"><h2>📋 ขั้นตอนการสั่งซื้อ</h2><div class="sh-line"></div></div>
+    <div class="box">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-text"><b>ทักแชท</b> เพื่อแจ้งความต้องการ (หาไอดี / ฝากขาย / ทำป้ายเรท)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-text">ส่ง <b>รายละเอียดตามบรีฟ</b> ฟอร์ม หรือรูปภาพที่ต้องใช้ในการทำงาน</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-text"><b>ชำระเงิน</b> ตามเรทราคาที่ตกลง (ทางร้านรับชำระก่อนเริ่มงานครับ)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-text"><b>รอรับงาน</b> และสามารถเช็คคิวผ่านลิงก์ปุ่มด้านล่างนี้ได้เลย</div>
+      </div>
+      
+      <a href="https://docs.google.com/spreadsheets/d/1-kKlNjdrTLPbQ0ogYQt7Fb-QtCoLyMmX0H57NfEOMwA/edit?usp=drivesdk" class="btn btn-queue" target="_blank">
+        📑 คลิกเพื่อเช็คคิวงานร้าน Ta Ray
+      </a>
+    </div>
+  </div>
+
+  <div class="sh"><h2>📦 สิ่งที่ต้องเตรียม (ฝากขาย)</h2><div class="sh-line"></div></div>
+  <div class="box">
+    <div class="prep-item"><span>•</span> รูปสกิน, เครื่องประดับ, สัตว์เลี้ยง</div>
+    <div class="prep-item"><span>•</span> รูปของในคลัง, ยอดเติม, แรงค์</div>
+    <div class="prep-item"><span>•</span> ข้อมูลแบบฟอร์มที่ทางร้านจัดส่งให้</div>
+  </div>
+
+  <div class="sh"><h2>❓ คำถามที่พบบ่อย</h2><div class="sh-line"></div></div>
+  <div class="box">
+    <span class="faq-q">Q: รับงานด่วนไหมครับ?</span>
+    <p class="faq-a">A: สอบถามคิวงานก่อนได้ครับ หากคิวไม่เยอะยินดีลัดคิวให้ฟรีครับ</p>
+    
+    <span class="faq-q">Q: มีประกันหลังการขายไหม?</span>
+    <p class="faq-a">A: หากสะกดผิดหรือข้อมูลตกหล่นจากทางร้าน แก้ไขให้ฟรีทันทีครับ</p>
+    
+    <span class="faq-q">Q: สามารถยกเลิกงานได้ไหม?</span>
+    <p class="faq-a">A: หากทางร้านเริ่มงานไปแล้ว ไม่สามารถคืนเงินได้ในทุกกรณีครับ</p>
+  </div>
+
+  <div id="contact">
+    <div class="sh"><h2>📱 ติดต่อสอบถาม</h2><div class="sh-line"></div></div>
+    <div class="box" style="text-align:center;">
+      <p style="font-size:14px; margin-bottom:15px; color:var(--highlight);">ทักสอบถามแอดมินได้โดยตรงที่ Facebook</p>
+      <a href="https://www.facebook.com/share/1HXq3wncat/?mibextid=wwXIfr" class="btn btn-fb" target="_blank">
+        📘 ทักแชท Facebook : Ta Ray
+      </a>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    ⚠️ ลูกค้าโปรดอ่านรายละเอียดและเงื่อนไขของทางร้านให้ครบถ้วน เพื่อความเข้าใจที่ตรงกันและผลประโยชน์ของตัวลูกค้าเองนะครับ
+  </div>
+</div>
+
+<script>
+  // Script สำหรับจุด Particle วิ้งๆ
+  const P = document.getElementById('pts');
+  const symbols = ['✦','★','✧','🎮','💎'];
+  for (let i = 0; i < 18; i++) {
+    const d = document.createElement('div');
+    d.className = 'pt';
+    d.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    d.style.left = Math.random() * 100 + 'vw';
+    d.style.fontSize = (Math.random() * 12 + 10) + 'px';
+    d.style.animationDuration = (Math.random() * 8 + 12) + 's';
+    d.style.animationDelay = -(Math.random() * 20) + 's';
+    P.appendChild(d);
+  }
+</script>
+</body>
+</html>
